@@ -22,4 +22,6 @@ public interface TodoDao {
     int deleteTodoById(UUID id);
 
     int updateTodoById(UUID id, Todo todo);
+
+    int getNumberOfRecords();
 }

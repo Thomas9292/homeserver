@@ -62,4 +62,9 @@ public class FakeTodoDataAccessService implements TodoDao {
                     return 0;
                 }).orElse(0);
     }
+
+    @Override
+    public int getNumberOfRecords() {
+        return DB.size();
+    }
 }
