@@ -3,6 +3,7 @@ package com.thomaswesselink.homeserver.dao;
 import com.thomaswesselink.homeserver.model.Todo;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface TodoDao {
@@ -15,4 +16,10 @@ public interface TodoDao {
     }
 
     List<Todo> selectAllTodos();
+
+    Optional<Todo> selectTodoById(UUID id);
+
+    int deleteTodoById(UUID id);
+
+    int updateTodoById(UUID id, Todo todo);
 }
