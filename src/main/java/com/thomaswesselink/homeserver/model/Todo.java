@@ -2,14 +2,18 @@ package com.thomaswesselink.homeserver.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
 public class Todo {
 
     private final UUID id;
+    @NotBlank
     private final String title;
     private final String description;
+    @NotNull
     private final boolean isDone;
     private final Date dateCreated;
 

@@ -3,8 +3,10 @@ package com.thomaswesselink.homeserver.api;
 import com.thomaswesselink.homeserver.model.Todo;
 import com.thomaswesselink.homeserver.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +22,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public void addTodo(@RequestBody Todo todo) {
+    public void addTodo(@RequestBody @NonNull @Valid Todo todo) {
         todoService.addTodo(todo);
     }
 
@@ -40,7 +42,8 @@ public class TodoController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateTodoById(@PathVariable("id") UUID id, @RequestBody Todo todo) {
+    public void updateTodoById(@PathVariable("id") UUID id,
+                               @Valid @NonNull @RequestBody Todo todo) {
         todoService.updateTodo(id, todo);
     }
 }
