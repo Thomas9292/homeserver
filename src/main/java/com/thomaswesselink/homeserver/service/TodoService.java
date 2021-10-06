@@ -16,7 +16,7 @@ public class TodoService {
     private final TodoDao todoDao;
 
     @Autowired
-    public TodoService(@Qualifier("fakeDao") TodoDao todoDao) {
+    public TodoService(@Qualifier("postgresDao") TodoDao todoDao) {
         this.todoDao = todoDao;
     }
 
