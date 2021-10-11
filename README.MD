@@ -1,4 +1,5 @@
-# Homeserver
+[![Build Status](https://app.travis-ci.com/Thomas9292/homeserver.svg?branch=master)](https://app.travis-ci.com/Thomas9292/homeserver)
+# Homeserver 
 
 Homeserver is a playground project to familiarize myself with spring. It is a backend to a web app that allows several convenient home-related actions, like maintaining a shared shopping list.
 
