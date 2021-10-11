@@ -3,6 +3,7 @@ package com.thomaswesselink.homeserver.dao;
 import com.thomaswesselink.homeserver.model.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -47,7 +48,12 @@ public class TodoDataAccessService implements TodoDao{
     @Override
     public Optional<Todo> selectTodoById(UUID id) {
         final String sql = "SELECT id, title, description, isDone, dateCreated FROM todo WHERE id = ?";
-        Todo todo = jdbcTemplate.queryForObject(sql, new TodoRowMapper(), id);
+        Todo todo;
+        try {
+            todo = jdbcTemplate.queryForObject(sql, new TodoRowMapper(), id);
+        } catch (EmptyResultDataAccessException e) {
+            todo = null;
+        }
         return Optional.ofNullable(todo);
     }
 

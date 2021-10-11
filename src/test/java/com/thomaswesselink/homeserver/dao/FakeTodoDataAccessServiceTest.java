@@ -25,14 +25,19 @@ class FakeTodoDataAccessServiceTest {
     void selectAllTodos() {
         testService.insertTodo(testTodo);
         testService.insertTodo(testTodo);
-        assertEquals(2, testService.selectAllTodos().size());
+        assertEquals(testService.getNumberOfRecords(), testService.selectAllTodos().size());
     }
 
     @Test
     void selectTodoById() {
         testService.insertTodo(testTodo.getId(), testTodo);
         assertFalse(testService.selectTodoById(UUID.randomUUID()).isPresent());
-        assertEquals(testService.selectTodoById(testTodo.getId()).get().getId(), testTodo.getId());
+        Todo retrievedTodo = testService.selectTodoById(testTodo.getId()).get();
+        assertEquals(retrievedTodo.getId(), testTodo.getId());
+        assertEquals(retrievedTodo.getDescription(), testTodo.getDescription());
+        assertEquals(retrievedTodo.getTitle(), testTodo.getTitle());
+        assertEquals(retrievedTodo.isDone(), testTodo.isDone());
+        assertEquals(retrievedTodo.getDateCreated(), testTodo.getDateCreated());
     }
 
     @Test
