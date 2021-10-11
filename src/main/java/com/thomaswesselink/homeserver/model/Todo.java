@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Todo {
@@ -15,7 +15,7 @@ public class Todo {
     private final String description;
     @NotNull
     private final boolean isDone;
-    private final Date dateCreated;
+    private final LocalDateTime dateCreated;
 
     public Todo(@JsonProperty("id") UUID id,
                 @JsonProperty("title") String title,
@@ -24,10 +24,10 @@ public class Todo {
         this.title = title;
         this.description = description;
         this.isDone = false;
-        this.dateCreated = new Date();
+        this.dateCreated = LocalDateTime.now();
     }
 
-    public Todo(UUID id, String title, String description, boolean isDone, Date dateCreated) {
+    public Todo(UUID id, String title, String description, boolean isDone, LocalDateTime dateCreated) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -48,7 +48,7 @@ public class Todo {
         return description;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
