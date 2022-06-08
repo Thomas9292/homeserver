@@ -1,27 +1,21 @@
 package com.thomaswesselink.homeserver.dao;
 
 import com.thomaswesselink.homeserver.model.Todo;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface TodoDao {
+public interface TodoDao extends CrudRepository<Todo, UUID> {
 
-    int insertTodo(UUID id, Todo todo);
+    Todo save(Todo todo);
 
-    default int insertTodo(Todo todo) {
-        UUID id = UUID.randomUUID();
-        return insertTodo(id, todo);
-    }
+    List<Todo> findAll();
 
-    List<Todo> selectAllTodos();
+    Optional<Todo> findById(UUID id);
 
-    Optional<Todo> selectTodoById(UUID id);
+    void deleteById(UUID uuid);
 
-    int deleteTodoById(UUID id);
-
-    int updateTodoById(UUID id, Todo todo);
-
-    int getNumberOfRecords();
+    long count();
 }

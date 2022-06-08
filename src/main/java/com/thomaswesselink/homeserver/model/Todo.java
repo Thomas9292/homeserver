@@ -1,58 +1,36 @@
 package com.thomaswesselink.homeserver.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity(name = "todo")
 public class Todo {
 
-    private final UUID id;
+    @Id
+    @GeneratedValue
+    private UUID id;
+
     @NotBlank
-    private final String title;
-    private final String description;
+    private String title;
+
+    private String description;
+
     @NotNull
-    private final boolean isDone;
-    private final LocalDateTime dateCreated;
+    private boolean isDone;
 
-    public Todo(@JsonProperty("id") UUID id,
-                @JsonProperty("title") String title,
-                @JsonProperty("description") String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.isDone = false;
-        this.dateCreated = LocalDateTime.now();
-    }
-
-    public Todo(UUID id, String title, String description, boolean isDone, LocalDateTime dateCreated) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.isDone = isDone;
-        this.dateCreated = dateCreated;
-    }
-
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public LocalDateTime getDateCreated() {
-        return dateCreated;
-    }
-
-    public boolean isDone() {
-        return isDone;
-    }
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
 }

@@ -1,21 +1,13 @@
 [![Build Status](https://app.travis-ci.com/Thomas9292/homeserver.svg?branch=master)](https://app.travis-ci.com/Thomas9292/homeserver)
-# Homeserver 
+# Homeserver
 
 Homeserver is a playground project to familiarize myself with spring. It is a backend to a web app that allows several convenient home-related actions, like maintaining a shared shopping list. As can be read in the installation instructions, I use docker to host it on a raspberry pi.
 
 ## Usage
 
 ```bash
-$ ./gradlew bootRun
+$ ./mvnw spring-boot:run
 ```
-
-## Setup
-
-Copy and rename `application_template.yml` to `application.yml` and fill in a username and password.
-
-The Todo database can be selected by setting the qualifier for TodoDao in TodoService.java as follows:
-- `@Qualifier("fakeDao")` for in memory database
-- `@Qualifier("postgresDao")` for postgres database
 
 ## Installation
 
@@ -52,9 +44,9 @@ To host a dockerized postgresql database on your local machine (needed for the p
    where `<username>` is your username in application.yml
 6. Create the database:
       ```sql
-      postgres=# CREATE DATABASE homeserverpostgresdb;
+      postgres=# CREATE DATABASE homeserver;
       ```
-   where `homeserverpostgresdb` is the same as in beforementioned application.yml
+   where `homeserver` is the same as in beforementioned application.yml
 
 ***NOTE:*** the ipadress of your postgresql docker container might vary. Use `docker inspect <container id> | grep IPAddress` and change jdbc-url in application.yml accordingly.
 
