@@ -2,8 +2,10 @@ language: java
 install: skip
 
 os: linux
-dist: trusty
 jdk: oraclejdk11
+
+services:
+  - docker
 
 script:
   - ./mvnw clean install -DskipTests
