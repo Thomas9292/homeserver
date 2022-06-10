@@ -3,7 +3,16 @@ install: skip
 
 os: linux
 dist: trusty
-jdk: oraclejdk8
+jdk: oraclejdk11
 
 script:
+  - ./mvnw clean install -DskipTests
   - ./mvnw test -B
+
+deploy:
+  provider: script
+  script: bash scripts/docker_push
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true

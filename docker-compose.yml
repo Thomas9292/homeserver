@@ -24,3 +24,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  FrontEnd:
+    image: wesselinktc/homeserver-fe
+    ports:
+      - '80:80'
+    depends_on:
+      - API

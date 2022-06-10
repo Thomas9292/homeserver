@@ -1,5 +1,4 @@
-#FROM arm32v7/adoptopenjdk
-FROM openjdk:8
+FROM openjdk:11
 RUN addgroup spring
 RUN adduser spring --ingroup spring
 USER spring:spring
