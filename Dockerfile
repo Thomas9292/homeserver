@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM adoptopenjdk:11
 RUN addgroup spring
 RUN adduser spring --ingroup spring
 USER spring:spring
